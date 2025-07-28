@@ -64,7 +64,7 @@ function MainHome() {
         loadMovies();
     }, []);
 
-    useEffect(() => {
+    useEffect((): (() => void) | undefined => {
         if (!emblaApi) return;
 
         const onSelect = () => {

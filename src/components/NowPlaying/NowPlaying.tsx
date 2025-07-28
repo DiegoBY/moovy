@@ -21,6 +21,7 @@ function NowPlaying() {
     } satisfies Parameters<typeof useEmblaCarousel>[0];
 
     const [emblaRef, emblaApi] = useEmblaCarousel(options);
+    void emblaApi;
 
     const [movies, setMovies] = useState<Movie[]>([]);
 
