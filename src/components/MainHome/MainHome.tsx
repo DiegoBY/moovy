@@ -37,28 +37,6 @@ function MainHome() {
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
-    // useEffect(() => {
-
-    //     const loadMovies = async () => {
-    //         setIsLoading(true)
-
-    //         const response = await api_tmdb.get('movie/now_playing', {
-    //             params: {
-    //                 api_key: 'd9f1413fb0c5c6f73e2f2d46c706f44d',
-    //                 language: 'pt-BR',
-    //                 page: 1,
-    //             },
-    //         })
-
-    //         const top5 = response.data.results.slice(0, 5);
-    //         setMovies(top5);
-
-    //         // console.log(response.data.results);
-    //     };
-
-    //     loadMovies();
-    // }, []);
-
     useEffect(() => {
         const loadMovies = async () => {
             setIsLoading(true);
