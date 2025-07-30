@@ -6,6 +6,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 
 import { genreMap } from '../../utils/genreMap';
+import WaveLoad from '../WaveLoad/WaveLoad';
 
 const apiKey = import.meta.env.VITE_API_TMDB_KEY;
 
@@ -57,7 +58,7 @@ function MainHome() {
             } finally {
                 setTimeout(() => {
                     setIsLoading(false);
-                }, 100);
+                }, 1200);
             }
         };
 
@@ -95,18 +96,7 @@ function MainHome() {
     return (
         <>
             <section className="mt-20 lg:px-28 xl:px-42 2xl:px-72">
-                {isLoading && (
-                    <div className="z-[999] flex flex-col justify-center items-center w-full h-full bg-[#030A1B] absolute inset-0 overflow-hidden">
-                        <div className="loader"></div>
-                        <div>
-                            <p className="wave mt-5 text-[#228EE5]">
-                                {'Carregando...'.split('').map((letra, i) => (
-                                    <span key={i}>{letra}</span>
-                                ))}
-                            </p>
-                        </div>
-                    </div>
-                )}
+                {isLoading && <WaveLoad text="Carregando... " />}
 
                 <div
                     className={`${

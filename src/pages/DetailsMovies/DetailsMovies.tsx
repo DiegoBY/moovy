@@ -6,6 +6,7 @@ import { api_tmdb } from '../../services/api';
 import { Icon } from '@iconify/react';
 import ReactPlayer from 'react-player';
 import NowPlaying from '../../components/NowPlaying/NowPlaying';
+import WaveLoad from '../../components/WaveLoad/WaveLoad';
 
 const apiKey = import.meta.env.VITE_API_TMDB_KEY;
 
@@ -74,7 +75,9 @@ function DetailsMovies() {
                 console.log('Obteve um erro da imagem: ', error);
             } finally {
                 console.log('Imagem finalizada');
-                setIsLoadingMovieData(false);
+                setTimeout(() => {
+                    setIsLoadingMovieData(false);
+                }, 3000);
             }
         };
 
@@ -153,16 +156,7 @@ function DetailsMovies() {
     return (
         <>
             <section className="mt-20 lg:px-28 xl:px-42 2xl:px-72">
-                <div className="hidden z-[999] pointer-events-none  flex-col justify-center items-center w-full h-screen bg-[#030A1B] absolute inset-0 overflow-hidden">
-                    <div className="loader"></div>
-                    <div>
-                        <p className="wave mt-5 text-[#228EE5]">
-                            {'Carregando...'.split('').map((letra, i) => (
-                                <span key={i}>{letra}</span>
-                            ))}
-                        </p>
-                    </div>
-                </div>
+                {isLoadingMovieData && <WaveLoad text="Buscando..." />}
 
                 <div className="w-full relative h-fit bg-[#030A1B] lg:max-w-[100%]">
                     <div className="absolute top-0 left-0 right-0 w-full h-5 bg-[#228EE5] blur-lg pointer-events-none"></div>
@@ -245,7 +239,7 @@ function DetailsMovies() {
                                 </p>
                             ))}
                         </div>
-                        <p className="text-sm/relaxed font-light opacity-70 line-clamp-3">
+                        <p className="text-sm/relaxed font-light opacity-70 line-clamp-6">
                             {overviewMovie}
                         </p>
 

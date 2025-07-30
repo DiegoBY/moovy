@@ -46,8 +46,6 @@ function Recommendations() {
 
     const handleMovie = (index: number) => {
         if (movies.length > 0) {
-            console.log(`/movie/${movies[index].id}`);
-
             navigate(`/movie/${movies[index].id}`);
         }
     };
