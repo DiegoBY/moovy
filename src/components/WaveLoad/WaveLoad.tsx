@@ -16,8 +16,6 @@ export default function WaveLoad({ text = '' }: WaveLoadProps) {
                     <div className="w-[3rem] h-[3rem] bg-[#030A1B] rounded-full absolute top-[30%] left-[9%]"></div>
                 </div>
 
-                <div className="absolute top-[61%] left-[55%] w-[20rem] h-[1rem] bg-[#228EE5] 712:left-[54%] 712:w-[25rem] md:left-[53%] lg:left-[52%] lg:rounded-2xl 1260:top-[60.7%] 2xl:top-[60%] 2xl:left-[51%]"></div>
-
                 <div className="absolute top-[68%] left-[50%] -translate-x-[50%]">
                     <p
                         className={`inline-block text-[#228EE5] text-2xl tracking-widest font-medium 712:text-3xl`}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Icon } from '@iconify/react';
 import { api_tmdb } from '../../services/api';
+import { useNavigate } from 'react-router-dom';
 
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
@@ -19,6 +20,7 @@ interface Movie {
 }
 
 function MainHome() {
+    const navigate = useNavigate();
     const options = {
         containScroll: false,
         loop: true,
@@ -35,6 +37,7 @@ function MainHome() {
     const [titleMovie, setTitleMovie] = useState<string>('');
     const [descMovie, setDescMovie] = useState<string>('');
     const [genreMovie, setGenreMovie] = useState<string[]>([]);
+    const [idMovie, setIdMovie] = useState<number>(0);
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -58,7 +61,7 @@ function MainHome() {
             } finally {
                 setTimeout(() => {
                     setIsLoading(false);
-                }, 1200);
+                }, 2000);
             }
         };
 
@@ -84,6 +87,7 @@ function MainHome() {
             setDescMovie(movies[selectedIndex].overview);
 
             setTitleMovie(movies[selectedIndex].title);
+            setIdMovie(movies[selectedIndex].id);
 
             setGenreMovie(
                 movies[selectedIndex].genre_ids
@@ -92,6 +96,12 @@ function MainHome() {
             );
         }
     }, [movies, selectedIndex]);
+
+    const handleMovie = () => {
+        if (movies.length > 0) {
+            navigate(`/movie/${idMovie}`);
+        }
+    };
 
     return (
         <>
@@ -108,15 +118,15 @@ function MainHome() {
                         <div className="absolute top-0 left-0 right-0 w-full h-5 bg-[#228EE5] blur-lg pointer-events-none lg:hidden"></div>
                         <div className="overflow-hidden" ref={emblaRef}>
                             <div className=" flex touch-pan-y touch-pinch-zoom -ml-4">
-                                {movies.map((index) => (
+                                {movies.map((item) => (
                                     <div
-                                        key={index.id}
+                                        key={item.id}
                                         className="translate-z-0 flex-[0_0_100%] min-w-0 pl-4 relative "
                                     >
                                         <div className="relative ">
                                             <img
-                                                src={`https://image.tmdb.org/t/p/original${index.backdrop_path}`}
-                                                alt={`Filme ${index.title}`}
+                                                src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+                                                alt={`Filme ${item.title}`}
                                                 className="object-cover brightness-110 w-auto lg:w-full lg:h-[25rem] lg:rounded-b-2xl 1260:h-[30rem] 2xl:h-[35rem]"
                                             />
 
@@ -128,7 +138,7 @@ function MainHome() {
                         </div>
                     </div>
 
-                    <div className="px-4 mt-5 flex flex-col gap-y-4 w-[70%] 712:absolute 712:top-50 712:-translate-y-[50] lg:top-20 1260:top-50 2xl:top-65">
+                    <div className="px-4 w-full mt-5 flex flex-col gap-y-4 712:absolute 712:top-50 712:-translate-y-[50] lg:top-40 1260:top-50 2xl:top-65">
                         <p className="text-2xl font-bold line-clamp-1 w-fit 712:text-4xl">
                             {titleMovie}
                         </p>
@@ -144,11 +154,14 @@ function MainHome() {
                             ))}
                         </div>
 
-                        <p className="text-sm/relaxed font-light opacity-70 line-clamp-3 w-fit lg:w-[60%]">
+                        <p className="text-sm/relaxed font-light opacity-70 line-clamp-3 w-full lg:w-[60%]">
                             {descMovie}
                         </p>
                         <div className="flex gap-x-6 w-fit">
-                            <button className="cursor-pointer transition-all duration-400 ease-linear flex items-center gap-x-2 bg-transparent border border-[#228ee5] px-4 py-2 rounded-2xl text-sm tracking-wider 390:text-base hover:bg-[#fff] hover:text-[#228ee5] hover:font-bold hover:border-[#fff]">
+                            <button
+                                className="cursor-pointer transition-all duration-400 ease-linear flex items-center gap-x-2 bg-transparent border border-[#228ee5] px-4 py-2 rounded-2xl text-sm tracking-wider 390:text-base hover:bg-[#fff] hover:text-[#228ee5] hover:font-bold hover:border-[#fff]"
+                                onClick={() => handleMovie()}
+                            >
                                 Assitir Filme
                                 <Icon
                                     icon="ph:arrow-right-light"
