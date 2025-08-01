@@ -21,6 +21,7 @@ interface Movie {
 
 function MainHome() {
     const navigate = useNavigate();
+
     const options = {
         containScroll: false,
         loop: true,
@@ -34,10 +35,7 @@ function MainHome() {
     const [movies, setMovies] = useState<Movie[]>([]);
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
-    const [titleMovie, setTitleMovie] = useState<string>('');
-    const [descMovie, setDescMovie] = useState<string>('');
-    const [genreMovie, setGenreMovie] = useState<string[]>([]);
-    const [idMovie, setIdMovie] = useState<number>(0);
+    const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -74,32 +72,23 @@ function MainHome() {
         const onSelect = () => {
             const indexAtivo = emblaApi.selectedScrollSnap();
             setSelectedIndex(indexAtivo);
+
+            const movie = movies[indexAtivo];
+
+            if (movie) {
+                setSelectedMovie(movie);
+            }
         };
 
         emblaApi.on('select', onSelect);
         onSelect();
 
         return () => emblaApi.off('select', onSelect);
-    }, [emblaApi]);
-
-    useEffect(() => {
-        if (movies[selectedIndex] != undefined) {
-            setDescMovie(movies[selectedIndex].overview);
-
-            setTitleMovie(movies[selectedIndex].title);
-            setIdMovie(movies[selectedIndex].id);
-
-            setGenreMovie(
-                movies[selectedIndex].genre_ids
-                    .map((id) => genreMap[id])
-                    .filter(Boolean)
-            );
-        }
-    }, [movies, selectedIndex]);
+    }, [emblaApi, movies]);
 
     const handleMovie = () => {
         if (movies.length > 0) {
-            navigate(`/movie/${idMovie}`);
+            navigate(`/movie/${selectedMovie?.id}`);
         }
     };
 
@@ -127,6 +116,7 @@ function MainHome() {
                                             <img
                                                 src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
                                                 alt={`Filme ${item.title}`}
+                                                loading="lazy"
                                                 className="object-cover brightness-110 w-auto lg:w-full lg:h-[25rem] lg:rounded-b-2xl 1260:h-[30rem] 2xl:h-[35rem]"
                                             />
 
@@ -140,22 +130,22 @@ function MainHome() {
 
                     <div className="px-4 w-full mt-5 flex flex-col gap-y-4 712:absolute 712:top-50 712:-translate-y-[50] lg:top-40 1260:top-50 2xl:top-65">
                         <p className="text-2xl font-bold line-clamp-1 w-fit 712:text-4xl">
-                            {titleMovie}
+                            {selectedMovie?.title}
                         </p>
 
                         <div className="flex items-center gap-x-4 w-fit">
-                            {genreMovie.map((item, index) => (
+                            {selectedMovie?.genre_ids.map((id) => (
                                 <p
-                                    key={index}
+                                    key={id}
                                     className="text-sm/relaxed font-light opacity-70 712:text-base/relaxed"
                                 >
-                                    {item}
+                                    {genreMap[id]}
                                 </p>
                             ))}
                         </div>
 
                         <p className="text-sm/relaxed font-light opacity-70 line-clamp-3 w-full lg:w-[60%]">
-                            {descMovie}
+                            {selectedMovie?.overview}
                         </p>
                         <div className="flex gap-x-6 w-fit">
                             <button
