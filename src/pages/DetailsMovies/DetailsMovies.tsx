@@ -75,9 +75,7 @@ function DetailsMovies() {
                 console.log('Obteve um erro da imagem: ', error);
             } finally {
                 console.log('Imagem finalizada');
-                setTimeout(() => {
-                    setIsLoadingMovieData(false);
-                }, 3000);
+                setIsLoadingMovieData(false);
             }
         };
 
@@ -171,6 +169,7 @@ function DetailsMovies() {
                             <img
                                 src={`https://image.tmdb.org/t/p/original/${imgMovie}`}
                                 alt={`Filme `}
+                                loading="lazy"
                                 className="flex object-cover brightness-110 w-full lg:w-full lg:h-[25rem] lg:rounded-b-2xl 1260:h-[30rem] 2xl:h-[35rem]"
                             />
                         </div>
