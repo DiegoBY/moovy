@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { api_tmdb } from '../../services/api';
 import { genreMap } from '../../utils/genreMap';
 import { useNavigate } from 'react-router-dom';
-import { Movie } from '@/types/Movie';
+import type { Movie } from '@/types/Movie';
 
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';

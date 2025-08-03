@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/react';
 
-import { Movie } from '@/types/Movie';
+import type { Movie } from '@/types/Movie';
 
 interface RecommendationCardProps {
     item: Movie;

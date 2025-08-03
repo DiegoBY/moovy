@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Movie } from '@/types/Movie';
+import type { Movie } from '@/types/Movie';
 import { api_tmdb } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
 
