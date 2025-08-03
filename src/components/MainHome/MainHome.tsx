@@ -28,7 +28,6 @@ function MainHome() {
     const [emblaRef, emblaApi] = useEmblaCarousel(options, [autoplay]);
 
     const [movies, setMovies] = useState<Movie[]>([]);
-    const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
@@ -64,7 +63,6 @@ function MainHome() {
 
         const onSelect = () => {
             const indexAtivo = emblaApi.selectedScrollSnap();
-            setSelectedIndex(indexAtivo);
 
             const movie = movies[indexAtivo];
 
