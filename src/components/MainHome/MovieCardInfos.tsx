@@ -15,7 +15,7 @@ function MovieCardInfos({
 }: MovieCardInfosProps) {
     return (
         <>
-            <div className="px-4 w-full mt-5 flex flex-col gap-y-4 712:absolute 712:top-50 712:-translate-y-[50] lg:top-40 1260:top-50 2xl:top-65">
+            <div className="px-4 w-full flex flex-col gap-y-4 712:absolute 712:top-50 712:-translate-y-[50] lg:top-40 1260:top-50 2xl:top-65">
                 <p className="text-2xl font-bold line-clamp-1 w-fit 712:text-4xl">
                     {selectedMovie?.title}
                 </p>

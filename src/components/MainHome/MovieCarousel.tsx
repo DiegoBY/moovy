@@ -19,7 +19,7 @@ function MovieCarousel({ movies, emblaRef }: MovieCarouselProps) {
                             >
                                 <div className="relative ">
                                     <img
-                                        src={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+                                        src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
                                         alt={`Filme ${item.title}`}
                                         loading="lazy"
                                         className="object-cover brightness-110 w-auto lg:w-full lg:h-[25rem] lg:rounded-b-2xl 1260:h-[30rem] 2xl:h-[35rem]"

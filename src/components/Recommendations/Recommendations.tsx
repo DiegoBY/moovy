@@ -2,14 +2,19 @@ import { useState, useEffect } from 'react';
 import type { Movie } from '@/types/Movie';
 import { api_tmdb } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
+import { useCallback } from 'react';
 
 import useEmblaCarousel from 'embla-carousel-react';
 
 import RecommendationCard from './../Recommendations/RecommendationCard';
+import NextOrPrevCarousel from './../MainHome/NextOrPrevCarousel';
 
 const apiKey = import.meta.env.VITE_API_TMDB_KEY;
 
 function Recommendations() {
+    const [canScrollPrev, setCanScrollPrev] = useState(false);
+    const [canScrollNext, setCanScrollNext] = useState(false);
+
     const options = {
         containScroll: false,
         loop: false,
@@ -22,6 +27,15 @@ function Recommendations() {
     const [movies, setMovies] = useState<Movie[]>([]);
 
     const navigate = useNavigate();
+
+    const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+    const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+
+    const updateScrollButtons = useCallback(() => {
+        if (!emblaApi) return;
+        setCanScrollPrev(emblaApi.canScrollPrev());
+        setCanScrollNext(emblaApi.canScrollNext());
+    }, [emblaApi]);
 
     useEffect(() => {
         const loadMovies = async () => {
@@ -45,6 +59,19 @@ function Recommendations() {
             navigate(`/movie/${movies[index].id}`);
         }
     };
+
+    useEffect(() => {
+        if (!emblaApi) return;
+
+        updateScrollButtons();
+        emblaApi.on('select', updateScrollButtons);
+        emblaApi.on('reInit', updateScrollButtons);
+
+        return () => {
+            emblaApi.off('select', updateScrollButtons);
+            emblaApi.off('reInit', updateScrollButtons);
+        };
+    }, [emblaApi, updateScrollButtons]);
 
     return (
         <>
@@ -75,6 +102,13 @@ function Recommendations() {
                             </div>
                         </div>
                     </div>
+
+                    <NextOrPrevCarousel
+                        scrollPrev={scrollPrev}
+                        scrollNext={scrollNext}
+                        canScrollPrev={canScrollPrev}
+                        canScrollNext={canScrollNext}
+                    />
                 </div>
             </section>
         </>

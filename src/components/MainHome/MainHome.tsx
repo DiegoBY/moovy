@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+import { useCallback } from 'react';
 import { api_tmdb } from '../../services/api';
 import { genreMap } from '../../utils/genreMap';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +12,8 @@ import Autoplay from 'embla-carousel-autoplay';
 import WaveLoad from '../WaveLoad/WaveLoad';
 import MovieCarousel from '../MainHome/MovieCarousel';
 import MovieCardInfos from '../MainHome/MovieCardInfos';
+
+import NextOrPrevCarousel from './../MainHome/NextOrPrevCarousel';
 
 const apiKey = import.meta.env.VITE_API_TMDB_KEY;
 
@@ -32,6 +35,9 @@ function MainHome() {
     const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
+
+    const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+    const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
     useEffect(() => {
         const loadMovies = async () => {
@@ -104,6 +110,11 @@ function MainHome() {
                         selectedMovie={selectedMovie}
                         genreMap={genreMap}
                         handleMovie={handleMovie}
+                    />
+
+                    <NextOrPrevCarousel
+                        scrollPrev={scrollPrev}
+                        scrollNext={scrollNext}
                     />
                 </div>
             </section>
