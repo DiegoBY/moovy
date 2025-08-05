@@ -76,7 +76,7 @@ function Recommendations() {
     return (
         <>
             <section
-                className="px-4 mb-40 712:mt-20 lg:px-28 xl:px-42 2xl:px-72"
+                className="px-4 712:mt-10 lg:px-28 xl:px-42 1164:mt-20 2xl:px-72"
                 role="region"
                 aria-label="Filmes recomendados"
             >
@@ -102,15 +102,16 @@ function Recommendations() {
                             </div>
                         </div>
                     </div>
-
-                    <NextOrPrevCarousel
-                        scrollPrev={scrollPrev}
-                        scrollNext={scrollNext}
-                        canScrollPrev={canScrollPrev}
-                        canScrollNext={canScrollNext}
-                    />
                 </div>
             </section>
+            <div className="mb-10">
+                <NextOrPrevCarousel
+                    scrollPrev={scrollPrev}
+                    scrollNext={scrollNext}
+                    canScrollPrev={canScrollPrev}
+                    canScrollNext={canScrollNext}
+                />
+            </div>
         </>
     );
 }

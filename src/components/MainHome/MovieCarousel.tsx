@@ -3,6 +3,8 @@ import type { Movie } from '@/types/Movie';
 interface MovieCarouselProps {
     movies: Movie[];
     emblaRef: (element: HTMLElement | null) => void;
+    scrollPrev: any;
+    scrollNext: any;
 }
 
 function MovieCarousel({ movies, emblaRef }: MovieCarouselProps) {
@@ -22,7 +24,7 @@ function MovieCarousel({ movies, emblaRef }: MovieCarouselProps) {
                                         src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
                                         alt={`Filme ${item.title}`}
                                         loading="lazy"
-                                        className="object-cover brightness-110 w-auto lg:w-full lg:h-[25rem] lg:rounded-b-2xl 1260:h-[30rem] 2xl:h-[35rem]"
+                                        className="object-cover brightness-110 w-full 712:h-auto 2xl:h-[calc(100vh-120px)]"
                                     />
 
                                     <div className="w-full h-full absolute inset-0 bg-gradient-to-b from-[#030A1B]/10 via-[#030A1B]/20 to-[#030A1B] lg:bg-[#030A1B]/10"></div>
@@ -37,3 +39,5 @@ function MovieCarousel({ movies, emblaRef }: MovieCarouselProps) {
 }
 
 export default MovieCarousel;
+
+// Tag img classname="lg:w-full lg:h-[25rem] lg:rounded-b-2xl 1260:h-[30rem] 2xl:h-[35rem]"

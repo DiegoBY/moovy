@@ -13,8 +13,6 @@ import WaveLoad from '../WaveLoad/WaveLoad';
 import MovieCarousel from '../MainHome/MovieCarousel';
 import MovieCardInfos from '../MainHome/MovieCardInfos';
 
-import NextOrPrevCarousel from './../MainHome/NextOrPrevCarousel';
-
 const apiKey = import.meta.env.VITE_API_TMDB_KEY;
 
 function MainHome() {
@@ -92,7 +90,7 @@ function MainHome() {
     return (
         <>
             <section
-                className="mt-20 lg:px-28 xl:px-42 2xl:px-72"
+                className=" mt-20 712:mt-0 " // mt-20 lg:px-28 xl:px-42 2xl:px-72
                 role="region"
                 aria-label="Filmes recomendados"
             >
@@ -105,16 +103,24 @@ function MainHome() {
                 >
                     {/* Banner Principal */}
 
-                    <MovieCarousel movies={movies} emblaRef={emblaRef} />
+                    <div className="hidden 1164:flex justify-center items-center absolute bottom-0 left-[50%] -translate-x-[50%]">
+                        <div className="w-6 h-10 border-2 border-[#228EE5] rounded-full flex justify-center items-start relative">
+                            <div className="w-1 h-1 bg-[#228EE5] rounded-full animate-scroll-bounce absolute top-2" />
+                        </div>
+                    </div>
+
+                    <MovieCarousel
+                        movies={movies}
+                        emblaRef={emblaRef}
+                        scrollPrev={scrollPrev}
+                        scrollNext={scrollNext}
+                    />
                     <MovieCardInfos
                         selectedMovie={selectedMovie}
                         genreMap={genreMap}
                         handleMovie={handleMovie}
-                    />
-
-                    <NextOrPrevCarousel
-                        scrollPrev={scrollPrev}
                         scrollNext={scrollNext}
+                        scrollPrev={scrollPrev}
                     />
                 </div>
             </section>
