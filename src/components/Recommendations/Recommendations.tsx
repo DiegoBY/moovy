@@ -104,7 +104,7 @@ function Recommendations() {
                     </div>
                 </div>
             </section>
-            <div className="mb-10">
+            <div className="mb-10 px-4 lg:px-0">
                 <NextOrPrevCarousel
                     scrollPrev={scrollPrev}
                     scrollNext={scrollNext}
