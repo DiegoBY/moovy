@@ -18,9 +18,12 @@ function Header() {
 
                     {/* Menu Pc */}
                     <div className="hidden lg:flex justify-between items-center">
-                        <div className="text-2xl font-bold tracking-widest cursor-pointer text-[#228EE5]">
+                        <a
+                            href="/"
+                            className=" flex text-2xl font-bold tracking-widest cursor-pointer text-[#228EE5]"
+                        >
                             Moovy
-                        </div>
+                        </a>
                         <div className="flex items-center gap-x-10 ">
                             <div className="flex gap-x-4">
                                 <a href="#" className="text-xl">
