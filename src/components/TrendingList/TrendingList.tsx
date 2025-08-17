@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
-import LottieLoader from '../LottieLoader/LottieLoader';
+import SectionLoader from '../SectionLoader/SectionLoader';
 
 import { api_tmdb } from '../../services/api';
 import type { Movie } from '@/types/Movie';
@@ -70,7 +70,7 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
     return (
         <>
             {loading ? (
-                <LottieLoader />
+                <SectionLoader />
             ) : (
                 <section className="my-10 px-3">
                     <p className="text-[#4743E0] text-xl font-bold tracking-widest">

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { api_tmdb } from '../../services/api';
 import type { Movie } from '@/types/Movie';
 import BannerImage from './BannerImage';
-import LottieLoader from '../LottieLoader/LottieLoader';
+import SectionLoader from '../SectionLoader/SectionLoader';
 
 const apiKey = import.meta.env.VITE_API_TMDB_KEY;
 
@@ -36,7 +36,7 @@ function Banner() {
     return (
         <>
             {loading ? (
-                <LottieLoader />
+                <SectionLoader />
             ) : (
                 <div className="relative mt-30">
                     <BannerImage listMovie={listMovies} />
