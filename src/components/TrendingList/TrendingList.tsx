@@ -30,7 +30,7 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
                 const response = await api_tmdb.get(`trending/${type}/day`, {
                     params: { api_key: apiKey, language: 'pt-BR', page: 1 },
                 });
-                const results: Movie[] = response.data.results.map(
+                let results: Movie[] = Array.from(response.data.results).map(
                     (item: any) => ({
                         id: item.id,
                         title: item.title || item.name,
