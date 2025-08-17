@@ -5,11 +5,11 @@ import path from 'path';
 export default defineConfig({
     plugins: [tailwindcss()],
     optimizeDeps: {
-        exclude: ['lottie-react', 'lottie-web'],
+        exclude: ['lottie-react'],
     },
     build: {
         rollupOptions: {
-            external: ['lottie-react', 'lottie-web'],
+            external: ['lottie-react'],
         },
     },
     resolve: {
