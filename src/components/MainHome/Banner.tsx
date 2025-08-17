@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { api_tmdb } from '../../services/api';
 import type { Movie } from '@/types/Movie';
 import BannerImage from './BannerImage';
+import LottieLoader from '../LottieLoader/LottieLoader';
 
 const apiKey = import.meta.env.VITE_API_TMDB_KEY;
 
 function Banner() {
     const [listMovies, setListMovies] = useState<Movie[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const loadMovies = async () => {
@@ -24,6 +26,7 @@ function Banner() {
             } catch (error) {
                 console.error('Erro ao carregar os filmes:', error);
             } finally {
+                setLoading(false);
             }
         };
 
@@ -32,9 +35,13 @@ function Banner() {
 
     return (
         <>
-            <div className="relative mt-30">
-                <BannerImage listMovie={listMovies} />
-            </div>
+            {loading ? (
+                <LottieLoader />
+            ) : (
+                <div className="relative mt-30">
+                    <BannerImage listMovie={listMovies} />
+                </div>
+            )}
         </>
     );
 }

@@ -11,6 +11,7 @@ import 'swiper/css/navigation';
 import { Autoplay, Pagination } from 'swiper/modules';
 
 import type { Movie } from '@/types/Movie';
+import FadeInImage from '../TrendingList/FadeInImage';
 
 interface BannerImageProps {
     listMovie: Movie[];
@@ -40,8 +41,7 @@ function BannerImage({ listMovie }: BannerImageProps) {
                         <div>
                             <div className="absolute inset-0 -bottom-10 bg-gradient-to-t from-[#171A21] via-[#171A21]/70 to-transparent"></div>
 
-                            <img
-                                loading="lazy"
+                            <FadeInImage
                                 src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
                                 alt={`Filme ${item.title}`}
                             />
