@@ -13,7 +13,7 @@ export const genreMap: Record<number, string> = {
     10402: 'Música',
     9648: 'Mistério',
     10749: 'Romance',
-    878: 'Ficção científica',
+    878: 'Ficção Cien',
     10770: 'Cinema TV',
     53: 'Suspense',
     10752: 'Guerra',

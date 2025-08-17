@@ -1,13 +1,12 @@
-import MainHome from '../../components/MainHome/MainHome';
-import Recommendations from '../../components/Recommendations/Recommendations';
-import TopRated from '../../components/TopRated/TopRated';
+import Banner from '@/components/MainHome/Banner';
+import TrendingList from '@/components/TrendingList/TrendingList';
 
 export function Home() {
     return (
         <>
-            <MainHome />
-            <Recommendations />
-            <TopRated />
+            <Banner />
+            <TrendingList type="movie" titleSection="Filmes" />
+            <TrendingList type="tv" titleSection="Séries" />
         </>
     );
 }
