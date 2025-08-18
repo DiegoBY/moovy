@@ -7,7 +7,9 @@ import SectionLoader from '../SectionLoader/SectionLoader';
 
 import { api_tmdb } from '../../services/api';
 import type { Movie } from '@/types/Movie';
-import FadeInImage from '../FadeInImage/FadeInImage';
+
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const apiKey = import.meta.env.VITE_API_TMDB_KEY;
 
@@ -98,9 +100,12 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
                     >
                         {listTrending.map((item) => (
                             <SwiperSlide key={item.id}>
-                                <FadeInImage
-                                    src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}
+                                <LazyLoadImage
                                     alt={`${titleSection} ${item.title}`}
+                                    src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}
+                                    effect="blur"
+                                    threshold={300}
+                                    className="375:rounded-2xl"
                                 />
                             </SwiperSlide>
                         ))}

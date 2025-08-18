@@ -11,7 +11,9 @@ import 'swiper/css/navigation';
 import { Autoplay, Pagination } from 'swiper/modules';
 
 import type { Movie } from '@/types/Movie';
-import FadeInImage from '../FadeInImage/FadeInImage';
+
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 interface BannerImageProps {
     listMovie: Movie[];
@@ -41,9 +43,14 @@ function BannerImage({ listMovie }: BannerImageProps) {
                         <div>
                             <div className="absolute inset-0 -bottom-10 bg-gradient-to-t from-[#171A21] via-[#171A21]/70 to-transparent"></div>
 
-                            <FadeInImage
-                                src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
+                            <LazyLoadImage
                                 alt={`Filme ${item.title}`}
+                                src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
+                                placeholderSrc={`https://image.tmdb.org/t/p/w92/${item?.backdrop_path}`}
+                                effect="blur"
+                                visibleByDefault={true}
+                                threshold={300}
+                                className="375:rounded-2xl"
                             />
                         </div>
                     </SwiperSlide>
