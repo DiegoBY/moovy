@@ -17,13 +17,13 @@ function BannerInfo({ listMovie, index }: BannerInfoProps) {
 
     return (
         <>
-            <div className="absolute top-22 left-3 z-[20]">
-                <p className="text-xl font-semibold text-[#fff]">
+            <div className="absolute top-10 left-3 z-[20] 375:top-22 425:top-27 712:top-40 712:left-15 lg:left-25 lg:top-70 xl:left-60 2xl:left-80 1920:left-110 1920:top-90">
+                <p className="text-xl font-semibold text-[#fff] 712:text-2xl">
                     {listMovie[index]?.title}
                 </p>
 
                 {genres && genres.length > 0 && (
-                    <p className="text-xs text-[#fff]/80 mt-1 ">
+                    <p className="text-xs text-[#fff]/80 mt-1 712:text-base">
                         {genres.map((genre, i) => (
                             <span key={i}>
                                 {genre}

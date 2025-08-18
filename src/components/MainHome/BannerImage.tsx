@@ -11,7 +11,7 @@ import 'swiper/css/navigation';
 import { Autoplay, Pagination } from 'swiper/modules';
 
 import type { Movie } from '@/types/Movie';
-import FadeInImage from '../TrendingList/FadeInImage';
+import FadeInImage from '../FadeInImage/FadeInImage';
 
 interface BannerImageProps {
     listMovie: Movie[];
@@ -33,7 +33,7 @@ function BannerImage({ listMovie }: BannerImageProps) {
                     clickable: true,
                 }}
                 modules={[Autoplay, Pagination]}
-                className="mySwiper relative !pb-5 overflow-visible"
+                className="mySwiper relative !pb-5 overflow-visible 712:!pb-10 "
                 onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
             >
                 {listMovie.map((item) => (

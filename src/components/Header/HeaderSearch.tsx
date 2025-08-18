@@ -42,7 +42,7 @@ function HeaderSearch() {
                 >
                     <Icon
                         icon="circum:search"
-                        className="w-10 h-10 text-[#EBFAFF]"
+                        className="w-10 h-10 text-[#EBFAFF] 712:w-12 712:h-12"
                         onClick={toggleSearch}
                     />
                 </button>

@@ -7,7 +7,7 @@ import SectionLoader from '../SectionLoader/SectionLoader';
 
 import { api_tmdb } from '../../services/api';
 import type { Movie } from '@/types/Movie';
-import FadeInImage from './FadeInImage';
+import FadeInImage from '../FadeInImage/FadeInImage';
 
 const apiKey = import.meta.env.VITE_API_TMDB_KEY;
 
@@ -54,9 +54,18 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
     // Ajusta slidesPerView conforme tamanho da tela
     const handleResize = () => {
         const width = window.innerWidth;
-        if (width >= 1024) setSlidesPerView(3);
-        else if (width >= 768) setSlidesPerView(2);
-        else setSlidesPerView(2);
+
+        if (width >= 712 && width <= 1023) {
+            setSlidesPerView(3);
+        } else if (width >= 1024 && width <= 1439) {
+            setSlidesPerView(4);
+        } else if (width >= 1440 && width <= 1919) {
+            setSlidesPerView(5);
+        } else if (width >= 1920) {
+            setSlidesPerView(6);
+        } else {
+            setSlidesPerView(2);
+        }
     };
 
     useEffect(() => {
@@ -72,8 +81,8 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
             {loading ? (
                 <SectionLoader />
             ) : (
-                <section className="my-10 px-3">
-                    <p className="text-[#4743E0] text-xl font-bold tracking-widest">
+                <section className="my-10 px-3 712:px-10 lg:px-20 xl:px-50 2xl:px-70 1920:px-100">
+                    <p className="text-[#4743E0] text-xl font-bold tracking-widest 712:text-2xl">
                         {titleSection}{' '}
                         <span className="text-[#fff]">em alta</span>
                     </p>

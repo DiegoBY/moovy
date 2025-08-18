@@ -38,7 +38,7 @@ function Banner() {
             {loading ? (
                 <SectionLoader />
             ) : (
-                <div className="relative mt-30">
+                <div className="relative mt-30 712:px-10 lg:px-20 xl:px-50 2xl:px-70 1920:px-100">
                     <BannerImage listMovie={listMovies} />
                 </div>
             )}

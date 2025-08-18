@@ -12,6 +12,7 @@
   --breakpoint-1164: 72.75rem;
   --breakpoint-1260: 78.75rem;
   --breakpoint-1440: 90rem;
+  --breakpoint-1920: 120rem;
 }
 
 
@@ -44,4 +45,16 @@ body {
 
 .swiper-pagination {
   bottom: -2.5px !important;
+}
+
+@media (min-width: 712px) {
+
+  .swiper-pagination {
+    bottom: -4px !important;
+  }
+
+  .swiper-pagination-bullet {
+    width: 14px;
+    height: 14px;
+  }
 }

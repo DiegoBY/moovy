@@ -6,7 +6,7 @@ function HeaderLogo() {
             <div>
                 <Icon
                     icon="arcticons:movies-anywhere"
-                    className="w-12 h-12 text-[#4743E0]"
+                    className="w-12 h-12 text-[#4743E0] 712:w-16 712:h-16"
                 />
             </div>
         </>
