@@ -76,8 +76,6 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    console.log(listTrending);
-
     return (
         <>
             {loading ? (
