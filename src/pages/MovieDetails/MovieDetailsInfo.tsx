@@ -9,7 +9,7 @@ function MovieDetailsInfo({ movie }: MovieDetailsInfoProps) {
     return (
         <>
             <div className="p-3">
-                <p className="text-lg">
+                <p className="text-lg 712:text-xl">
                     {movie.title}{' '}
                     <span className="text-[#fff]/50">
                         ({movie.release_date.slice(0, 4)})
@@ -24,7 +24,7 @@ function MovieDetailsInfo({ movie }: MovieDetailsInfoProps) {
                             .map((name, i, arr) => (
                                 <span
                                     key={i}
-                                    className="text-xs text-[#fff]/50"
+                                    className="text-xs text-[#fff]/50 712:text-sm"
                                 >
                                     {name}
                                     {i < arr.length - 1 && ' • '}

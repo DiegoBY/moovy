@@ -38,9 +38,11 @@ function MovieDetails() {
         <>
             {loading ? <SectionLoader /> : ''}
             {movie ? (
-                <section className="mt-30">
-                    <MovieDetailsImagem movie={movie} />
-                    <MovieDetailsInfo movie={movie} />
+                <section className="mt-30 ">
+                    <div className="712:px-10 lg:px-20 xl:px-50 2xl:px-70 1920:px-100">
+                        <MovieDetailsImagem movie={movie} />
+                        <MovieDetailsInfo movie={movie} />
+                    </div>
 
                     <TrendingList type="movie" titleSection="Filmes" />
                 </section>
