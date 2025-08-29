@@ -21,6 +21,8 @@ function Banner() {
                     },
                 });
 
+                console.log('IMAGEM: ', response.data.results);
+
                 const top5 = response.data.results.slice(0, 5);
                 setListMovies(top5);
             } catch (error) {

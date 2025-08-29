@@ -3,9 +3,9 @@ import { Home } from './pages/Home/Home';
 
 import Header from '../src/components/Header/Header';
 import Footer from './components/Footer/Footer';
+import MovieDetails from './pages/MovieDetails/MovieDetails';
 
 import './App.css';
-import SearchTvOrMovie from './pages/SearchTvOrMovie/SearchTvOrMovie';
 
 function App() {
     return (
@@ -14,7 +14,7 @@ function App() {
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/search" element={<SearchTvOrMovie />} />
+                    <Route path="/movie/:id" element={<MovieDetails />} />
                 </Routes>
                 <Footer />
             </Router>

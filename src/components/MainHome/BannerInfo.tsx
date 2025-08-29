@@ -10,7 +10,9 @@ interface BannerInfoProps {
 function BannerInfo({ listMovie, index }: BannerInfoProps) {
     const movie = listMovie[index];
 
-    const genres = movie?.genre_ids
+    if (!movie || !movie.genre_ids) return null;
+
+    const genres = movie.genre_ids
         .map((id) => genreMap[id])
         .filter(Boolean)
         .slice(0, 3);
@@ -22,7 +24,7 @@ function BannerInfo({ listMovie, index }: BannerInfoProps) {
                     {listMovie[index]?.title}
                 </p>
 
-                {genres && genres.length > 0 && (
+                {genres.length > 0 && (
                     <p className="text-xs text-[#fff]/80 mt-1 712:text-base">
                         {genres.map((genre, i) => (
                             <span key={i}>

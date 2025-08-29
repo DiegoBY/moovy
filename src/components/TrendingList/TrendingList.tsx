@@ -40,6 +40,7 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
                         backdrop_path: item.backdrop_path,
                         poster_path: item.poster_path,
                         genre_ids: item.genre_ids,
+                        release_date: item.release_date,
                     })
                 );
 
