@@ -5,9 +5,11 @@ export type Genre = {
 
 export type Movie = {
     id: number;
-    title: string;
+    title?: string;
+    name?: string;
     overview: string;
-    release_date: string;
+    release_date?: string;
+    first_air_date?: string;
     backdrop_path: string;
     poster_path: string;
     genre_ids?: number[];

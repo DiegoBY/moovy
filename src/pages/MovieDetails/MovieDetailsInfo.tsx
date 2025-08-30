@@ -6,14 +6,17 @@ interface MovieDetailsInfoProps {
 }
 
 function MovieDetailsInfo({ movie }: MovieDetailsInfoProps) {
+    const title = movie.title || movie.name;
+    const year =
+        movie.release_date?.slice(0, 4) ||
+        movie.first_air_date?.slice(0, 4) ||
+        '—';
+
     return (
         <>
             <div className="p-3">
                 <p className="text-lg 712:text-xl">
-                    {movie.title}{' '}
-                    <span className="text-[#fff]/50">
-                        ({movie.release_date.slice(0, 4)})
-                    </span>
+                    {title} <span className="text-[#fff]/50">({year})</span>
                 </p>
 
                 {movie?.genres && (

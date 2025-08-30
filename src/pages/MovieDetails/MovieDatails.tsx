@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import { api_tmdb } from '../../services/api';
 import type { Movie } from '@/types/Movie';
 
@@ -10,13 +11,16 @@ import MovieDetailsInfo from './MovieDetailsInfo';
 import SectionLoader from '@/components/SectionLoader/SectionLoader';
 
 function MovieDetails() {
+    const { type, id } = useParams<{ type: 'movie' | 'tv'; id: string }>();
+    const location = useLocation();
+
     const [movie, setMovie] = useState<Movie | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const loadMovies = async () => {
             try {
-                const response = await api_tmdb.get(`movie/${1151334}`, {
+                const response = await api_tmdb.get(`${type}/${id}`, {
                     params: {
                         api_key: apiKey,
                         language: 'pt-BR',
@@ -32,7 +36,9 @@ function MovieDetails() {
         };
 
         loadMovies();
-    }, []);
+    }, [location]);
+
+    console.log(movie);
 
     return (
         <>
@@ -44,7 +50,11 @@ function MovieDetails() {
                         <MovieDetailsInfo movie={movie} />
                     </div>
 
-                    <TrendingList type="movie" titleSection="Filmes" />
+                    {type === 'movie' ? (
+                        <TrendingList type={type} titleSection="Filmes" />
+                    ) : (
+                        <TrendingList type={type} titleSection="Séries" />
+                    )}
                 </section>
             ) : (
                 ''

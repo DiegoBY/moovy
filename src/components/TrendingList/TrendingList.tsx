@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -14,7 +15,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 const apiKey = import.meta.env.VITE_API_TMDB_KEY;
 
 type TrendingListProps = {
-    type: 'movie' | 'tv';
+    type?: 'movie' | 'tv';
     titleSection: string;
 };
 
@@ -99,13 +100,15 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
                     >
                         {listTrending.map((item) => (
                             <SwiperSlide key={item.id}>
-                                <LazyLoadImage
-                                    alt={`${titleSection} ${item.title}`}
-                                    src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}
-                                    effect="blur"
-                                    threshold={300}
-                                    className="375:rounded-2xl"
-                                />
+                                <Link to={`/${type}/${item.id}`}>
+                                    <LazyLoadImage
+                                        alt={`${titleSection} ${item.title}`}
+                                        src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}
+                                        effect="blur"
+                                        threshold={300}
+                                        className="375:rounded-2xl"
+                                    />
+                                </Link>
                             </SwiperSlide>
                         ))}
                     </Swiper>

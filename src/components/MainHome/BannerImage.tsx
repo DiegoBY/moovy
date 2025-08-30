@@ -58,7 +58,7 @@ function BannerImage({ listMovie }: BannerImageProps) {
             </Swiper>
 
             <BannerInfo listMovie={listMovie} index={activeIndex} />
-            <BannerButtons />
+            <BannerButtons id={listMovie[activeIndex].id} />
         </>
     );
 }
