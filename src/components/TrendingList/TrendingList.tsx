@@ -47,7 +47,6 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
 
                 setListTrending(results);
             } catch (error) {
-                console.error('Erro ao carregar os filmes:', error);
             } finally {
                 setLoading(false);
             }
@@ -99,8 +98,18 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
                         className="mt-10"
                     >
                         {listTrending.map((item) => (
-                            <SwiperSlide key={item.id}>
+                            <SwiperSlide
+                                key={item.id}
+                                className="relative group bg-[#1a1e27] rounded-2xl"
+                            >
                                 <Link to={`/${type}/${item.id}`}>
+                                    <div className="absolute inset-0  bg-[#171A21]/70 z-[200] 375:rounded-2xl opacity-0 transition-all duration-200 ease-in group-hover:opacity-100">
+                                        <Icon
+                                            icon="gravity-ui:play-fill"
+                                            className="w-10 h-10 absolute left-[50%] top-[50%] -translate-[50%] z-[200] text-[#fff]"
+                                        />
+                                    </div>
+
                                     <LazyLoadImage
                                         alt={`${titleSection} ${item.title}`}
                                         src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}

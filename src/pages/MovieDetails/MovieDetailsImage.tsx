@@ -37,7 +37,7 @@ function MovieDetailsImagem({
 
                 <div className="w-full h-full absolute inset-0">
                     <button
-                        className="absolute left-[50%] top-[50%] -translate-[50%] z-[200] text-[#fff] bg-[#4743E0] rounded-xl w-10 h-10 flex justify-center items-center  375:w-12 375:h-12"
+                        className="cursor-pointer absolute left-[50%] top-[50%] -translate-[50%] z-[200] text-[#fff] bg-[#4743E0] rounded-xl w-10 h-10 flex justify-center items-center  375:w-12 375:h-12 animate-pulse"
                         onClick={() => setIsPlay(true)}
                     >
                         <Icon
