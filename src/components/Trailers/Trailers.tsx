@@ -5,7 +5,11 @@ import { api_tmdb } from '../../services/api';
 
 const apiKey = import.meta.env.VITE_API_TMDB_KEY;
 
-function Trailers() {
+interface IsPlayProps {
+    setIsPlay: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function Trailers({ setIsPlay }: IsPlayProps) {
     const [listTrailersDublado, setListTrailersDublado] = useState([]);
     const [_, setLoading] = useState(true);
 
@@ -45,7 +49,6 @@ function Trailers() {
                     setListTrailersDublado(trailerSelecionado);
                 }
             } catch (error) {
-                console.error('Erro ao carregar os filmes:', error);
             } finally {
                 setLoading(false);
             }
@@ -53,8 +56,6 @@ function Trailers() {
 
         loadMovies();
     }, []);
-
-    console.log(listTrailersDublado);
 
     return (
         <>
@@ -66,6 +67,7 @@ function Trailers() {
                     controls
                     width={'100%'}
                     height={'100%'}
+                    onEnded={() => setIsPlay(false)}
                 />
             </section>
         </>

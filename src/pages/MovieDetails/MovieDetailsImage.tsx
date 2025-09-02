@@ -32,7 +32,7 @@ function MovieDetailsImagem({
                         className="375:rounded-2xl"
                     />
 
-                    {isPlay ? <Trailers /> : ''}
+                    {isPlay ? <Trailers setIsPlay={setIsPlay} /> : ''}
                 </div>
 
                 <div className="w-full h-full absolute inset-0">

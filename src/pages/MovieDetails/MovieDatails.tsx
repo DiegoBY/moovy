@@ -9,6 +9,7 @@ import TrendingList from '@/components/TrendingList/TrendingList';
 import MovieDetailsImagem from './MovieDetailsImage';
 import MovieDetailsInfo from './MovieDetailsInfo';
 import SectionLoader from '@/components/SectionLoader/SectionLoader';
+import NotFound from '@/components/NotFound/NotFound';
 
 function MovieDetails() {
     const { type, id } = useParams<{ type: 'movie' | 'tv'; id: string }>();
@@ -17,6 +18,8 @@ function MovieDetails() {
     const [movie, setMovie] = useState<Movie | null>(null);
     const [loading, setLoading] = useState(true);
     const [isPlay, setIsPlay] = useState<boolean>(false);
+
+    const [error, setError] = useState<number>();
 
     useEffect(() => {
         const loadMovies = async () => {
@@ -31,7 +34,8 @@ function MovieDetails() {
                 setMovie(response.data);
                 setIsPlay(false);
             } catch (error) {
-                console.error('Erro ao carregar os filmes:', error);
+                const err = error as { status?: number; message?: string };
+                setError(err.status ?? 500);
             } finally {
                 setLoading(false);
             }
@@ -40,11 +44,12 @@ function MovieDetails() {
         loadMovies();
     }, [location]);
 
-    // console.log(movie);
-
     return (
         <>
             {loading ? <SectionLoader /> : ''}
+
+            {error ? <NotFound code={error} /> : ''}
+
             {movie ? (
                 <section className="mt-30 ">
                     <div className="712:px-10 lg:px-20 xl:px-50 2xl:px-70 1920:px-100">
