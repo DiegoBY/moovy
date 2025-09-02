@@ -16,6 +16,7 @@ function MovieDetails() {
 
     const [movie, setMovie] = useState<Movie | null>(null);
     const [loading, setLoading] = useState(true);
+    const [isPlay, setIsPlay] = useState<boolean>(false);
 
     useEffect(() => {
         const loadMovies = async () => {
@@ -28,6 +29,7 @@ function MovieDetails() {
                 });
 
                 setMovie(response.data);
+                setIsPlay(false);
             } catch (error) {
                 console.error('Erro ao carregar os filmes:', error);
             } finally {
@@ -38,7 +40,7 @@ function MovieDetails() {
         loadMovies();
     }, [location]);
 
-    console.log(movie);
+    // console.log(movie);
 
     return (
         <>
@@ -46,7 +48,11 @@ function MovieDetails() {
             {movie ? (
                 <section className="mt-30 ">
                     <div className="712:px-10 lg:px-20 xl:px-50 2xl:px-70 1920:px-100">
-                        <MovieDetailsImagem movie={movie} />
+                        <MovieDetailsImagem
+                            isPlay={isPlay}
+                            setIsPlay={setIsPlay}
+                            movie={movie}
+                        />
                         <MovieDetailsInfo movie={movie} />
                     </div>
 

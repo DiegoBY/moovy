@@ -1,14 +1,22 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+
 import { Icon } from '@iconify/react';
 
 import type { Movie } from '@/types/Movie';
+import Trailers from '@/components/Trailers/Trailers';
 
 interface MovieDetailsImageProps {
     movie: Movie;
+    isPlay: boolean;
+    setIsPlay: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function MovieDetailsImagem({ movie }: MovieDetailsImageProps) {
+function MovieDetailsImagem({
+    movie,
+    isPlay,
+    setIsPlay,
+}: MovieDetailsImageProps) {
     return (
         <>
             <div className="relative">
@@ -23,10 +31,15 @@ function MovieDetailsImagem({ movie }: MovieDetailsImageProps) {
                         threshold={300}
                         className="375:rounded-2xl"
                     />
+
+                    {isPlay ? <Trailers /> : ''}
                 </div>
 
                 <div className="w-full h-full absolute inset-0">
-                    <button className="absolute left-[50%] top-[50%] -translate-[50%] z-[200] text-[#fff] bg-[#4743E0] rounded-xl w-10 h-10 flex justify-center items-center  375:w-12 375:h-12">
+                    <button
+                        className="absolute left-[50%] top-[50%] -translate-[50%] z-[200] text-[#fff] bg-[#4743E0] rounded-xl w-10 h-10 flex justify-center items-center  375:w-12 375:h-12"
+                        onClick={() => setIsPlay(true)}
+                    >
                         <Icon
                             icon="gravity-ui:play-fill"
                             className="w-5 h-5 375:w-7 375:h-7 712:w-7 712:h-7"
