@@ -77,6 +77,44 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    // Local Storage
+    const [myFavorites, setMyFavorites] = useState<Number[]>([]);
+
+    useEffect(() => {
+        const myList = localStorage.getItem('@moovy');
+        let savedMoviesOrTv = myList ? JSON.parse(myList) : [];
+
+        if (savedMoviesOrTv) {
+            savedMoviesOrTv.map((item: Movie) => {
+                setMyFavorites((prev) => [...prev, item.id]);
+            });
+        }
+    }, []);
+
+    const saveMovieTv = (item: Movie) => {
+        console.log(item);
+
+        const myList = localStorage.getItem('@moovy');
+        let savedMoviesOrTv = myList ? JSON.parse(myList) : [];
+
+        const hasMovieOrTv = savedMoviesOrTv.some(
+            (movieTv: any) => movieTv.id === item.id
+        );
+
+        if (hasMovieOrTv) {
+            alert('JA TEM ESSE FILME');
+            return;
+        }
+
+        setMyFavorites((prev) => [...prev, item.id]);
+
+        console.log(savedMoviesOrTv);
+
+        savedMoviesOrTv.push(item);
+        localStorage.setItem('@moovy', JSON.stringify(savedMoviesOrTv));
+        alert('FILME SALVO');
+    };
+
     return (
         <>
             {loading ? (
@@ -102,6 +140,20 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
                                 key={item.id}
                                 className="relative group bg-[#1a1e27] rounded-2xl"
                             >
+                                <div
+                                    className="w-10 h-10 flex justify-center items-center absolute right-2 top-2 bg-[#171A21] z-[220] rounded-xl"
+                                    onClick={() => saveMovieTv(item)}
+                                >
+                                    <Icon
+                                        icon="iconamoon:heart-thin"
+                                        className={`${
+                                            myFavorites.includes(item.id)
+                                                ? 'text-[#f00]'
+                                                : 'text-[#fff]'
+                                        }  cursor-pointer w-8 h-8 712:w-12 712:h-12 `}
+                                    />
+                                </div>
+
                                 <Link to={`/${type}/${item.id}`}>
                                     <div className="absolute inset-0  bg-[#171A21]/70 z-[200] 375:rounded-2xl opacity-0 transition-all duration-200 ease-in group-hover:opacity-100">
                                         <Icon
@@ -109,7 +161,6 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
                                             className="w-10 h-10 absolute left-[50%] top-[50%] -translate-[50%] z-[200] text-[#fff]"
                                         />
                                     </div>
-
                                     <LazyLoadImage
                                         alt={`${titleSection} ${item.title}`}
                                         src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}
