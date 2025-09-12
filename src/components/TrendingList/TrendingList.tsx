@@ -92,8 +92,6 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
     }, []);
 
     const saveMovieTv = (item: Movie) => {
-        console.log(item);
-
         const myList = localStorage.getItem('@moovy');
         let savedMoviesOrTv = myList ? JSON.parse(myList) : [];
 
@@ -108,9 +106,7 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
 
         setMyFavorites((prev) => [...prev, item.id]);
 
-        console.log(savedMoviesOrTv);
-
-        savedMoviesOrTv.push(item);
+        savedMoviesOrTv.push({ ...item, type });
         localStorage.setItem('@moovy', JSON.stringify(savedMoviesOrTv));
         alert('FILME SALVO');
     };
@@ -148,7 +144,7 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
                                         icon="iconamoon:heart-thin"
                                         className={`${
                                             myFavorites.includes(item.id)
-                                                ? 'text-[#f00]'
+                                                ? 'text-[#4743E0]'
                                                 : 'text-[#fff]'
                                         }  cursor-pointer w-8 h-8 712:w-12 712:h-12 `}
                                     />

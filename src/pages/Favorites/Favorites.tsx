@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import type { Movie } from '@/types/Movie';
 
+import { Link } from 'react-router-dom';
+
 import { Icon } from '@iconify/react';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -53,13 +55,15 @@ function Favorites() {
                 <div className="grid grid-cols-2 gap-4">
                     {itemPageCurrent.map((item) => (
                         <div className="relative" key={item.id}>
-                            <LazyLoadImage
-                                alt={`Filme ${item.title}`}
-                                src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}
-                                effect="blur"
-                                threshold={300}
-                                className="375:rounded-2xl"
-                            />
+                            <Link to={`/${item.type}/${item.id}`}>
+                                <LazyLoadImage
+                                    alt={`${item.type} ${item.title}`}
+                                    src={`https://image.tmdb.org/t/p/original/${item?.poster_path}`}
+                                    effect="blur"
+                                    threshold={300}
+                                    className="375:rounded-2xl"
+                                />
+                            </Link>
 
                             <div
                                 className="w-10 h-10 flex justify-center items-center absolute right-2 top-2 bg-[#171A21] z-[220] rounded-xl"

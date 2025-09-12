@@ -14,4 +14,5 @@ export type Movie = {
     poster_path: string;
     genre_ids?: number[];
     genres?: Genre[];
+    type?: string;
 };

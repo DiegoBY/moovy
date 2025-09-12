@@ -18,13 +18,6 @@ function BannerButtons({ id }: BannerButtonsProps) {
                         Trailer
                     </button>
                 </Link>
-
-                <button className="cursor-pointer">
-                    <Icon
-                        icon="iconamoon:heart-thin"
-                        className="w-10 h-10 text-[#EBFAFF] 712:w-16 712:h-16"
-                    />
-                </button>
             </section>
         </>
     );

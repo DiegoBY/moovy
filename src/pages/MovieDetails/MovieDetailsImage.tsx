@@ -45,13 +45,6 @@ function MovieDetailsImagem({
                             className="w-5 h-5 375:w-7 375:h-7 712:w-7 712:h-7"
                         />
                     </button>
-
-                    <button className="absolute right-5 top-2">
-                        <Icon
-                            icon="iconamoon:heart-thin"
-                            className="w-10 h-10 text-[#EBFAFF] 712:w-12 712:h-12 "
-                        />
-                    </button>
                 </div>
             </div>
         </>

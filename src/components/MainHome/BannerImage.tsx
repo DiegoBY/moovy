@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { Link } from 'react-router-dom';
+
 import BannerInfo from './BannerInfo';
 import BannerButtons from './BannerButtons';
 
@@ -41,17 +43,19 @@ function BannerImage({ listMovie }: BannerImageProps) {
                 {listMovie.map((item) => (
                     <SwiperSlide key={item.id} className="relative">
                         <div>
-                            <div className="absolute inset-0 -bottom-10 bg-gradient-to-t from-[#171A21] via-[#171A21]/70 to-transparent"></div>
+                            <Link to={`/movie/${item.id}`}>
+                                <div className="absolute inset-0 -bottom-10 bg-gradient-to-t from-[#171A21] via-[#171A21]/70 to-transparent"></div>
 
-                            <LazyLoadImage
-                                alt={`Filme ${item.title}`}
-                                src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
-                                placeholderSrc={`https://image.tmdb.org/t/p/w92/${item?.backdrop_path}`}
-                                effect="blur"
-                                visibleByDefault={true}
-                                threshold={300}
-                                className="375:rounded-2xl"
-                            />
+                                <LazyLoadImage
+                                    alt={`Filme ${item.title}`}
+                                    src={`https://image.tmdb.org/t/p/original/${item?.backdrop_path}`}
+                                    placeholderSrc={`https://image.tmdb.org/t/p/w92/${item?.backdrop_path}`}
+                                    effect="blur"
+                                    visibleByDefault={true}
+                                    threshold={300}
+                                    className="375:rounded-2xl"
+                                />
+                            </Link>
                         </div>
                     </SwiperSlide>
                 ))}
