@@ -7,7 +7,7 @@ import SectionLoader from '../SectionLoader/SectionLoader';
 const apiKey = import.meta.env.VITE_API_TMDB_KEY;
 
 type BannerProps = {
-    type?: 'movie' | 'tv';
+    type: 'movie' | 'tv';
     category: string;
 };
 
@@ -56,7 +56,7 @@ function Banner({ type, category }: BannerProps) {
                 <SectionLoader />
             ) : (
                 <div className="relative mt-30 712:px-10 lg:px-20 xl:px-50 2xl:px-70 1920:px-100">
-                    <BannerImage listMovie={listMovies} />
+                    <BannerImage listMovie={listMovies} type={type} />
                 </div>
             )}
         </>

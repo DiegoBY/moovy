@@ -19,10 +19,13 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 
 interface BannerImageProps {
     listMovie: Movie[];
+    type: string;
 }
 
-function BannerImage({ listMovie }: BannerImageProps) {
+function BannerImage({ listMovie, type }: BannerImageProps) {
     const [activeIndex, setActiveIndex] = useState(0);
+
+    console.log('TIPO: ', type);
 
     return (
         <>
@@ -43,7 +46,7 @@ function BannerImage({ listMovie }: BannerImageProps) {
                 {listMovie.map((item) => (
                     <SwiperSlide key={item.id} className="relative">
                         <div>
-                            <Link to={`/movie/${item.id}`}>
+                            <Link to={`/${type}/${item.id}`}>
                                 <div className="absolute inset-0 -bottom-10 bg-gradient-to-t from-[#171A21] via-[#171A21]/70 to-transparent"></div>
 
                                 <LazyLoadImage
@@ -62,7 +65,7 @@ function BannerImage({ listMovie }: BannerImageProps) {
             </Swiper>
 
             <BannerInfo listMovie={listMovie} index={activeIndex} />
-            <BannerButtons id={listMovie[activeIndex].id} />
+            <BannerButtons id={listMovie[activeIndex].id} type={type} />
         </>
     );
 }
