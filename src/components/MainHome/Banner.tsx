@@ -6,14 +6,21 @@ import SectionLoader from '../SectionLoader/SectionLoader';
 
 const apiKey = import.meta.env.VITE_API_TMDB_KEY;
 
-function Banner() {
+type BannerProps = {
+    type?: 'movie' | 'tv';
+    category: string;
+};
+
+function Banner({ type, category }: BannerProps) {
     const [listMovies, setListMovies] = useState<Movie[]>([]);
     const [loading, setLoading] = useState(true);
+
+    console.log(type);
 
     useEffect(() => {
         const loadMovies = async () => {
             try {
-                const response = await api_tmdb.get('movie/now_playing', {
+                const response = await api_tmdb.get(`${type}/${category}`, {
                     params: {
                         api_key: apiKey,
                         language: 'pt-BR',
@@ -21,8 +28,19 @@ function Banner() {
                     },
                 });
 
-                const top5 = response.data.results.slice(0, 5);
-                setListMovies(top5);
+                let results: Movie[] = Array.from(response.data.results)
+                    .slice(0, 5)
+                    .map((item: any) => ({
+                        id: item.id,
+                        title: item.title || item.name,
+                        overview: item.overview,
+                        backdrop_path: item.backdrop_path,
+                        poster_path: item.poster_path,
+                        genre_ids: item.genre_ids,
+                        release_date: item.release_date,
+                    }));
+
+                setListMovies(results);
             } catch (error) {
             } finally {
                 setLoading(false);

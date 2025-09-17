@@ -1,5 +1,21 @@
 import { Icon } from '@iconify/react';
 
+const links = [
+    {
+        label: 'Figma',
+        link: 'https://www.figma.com/design/2g4sGuozn2lnn0DBUpQAmF/Moovy?node-id=0-1&t=h3SP5EXG8N4Ak9j2-1',
+    },
+
+    { label: 'GitHub', link: 'https://github.com/DiegoBY' },
+
+    { label: 'Portfolio', link: 'https://devdiegosantos.vercel.app/' },
+
+    {
+        label: 'Linkedin',
+        link: 'https://www.linkedin.com/in/diego-santos-8055bb288/',
+    },
+];
+
 function Footer() {
     return (
         <>
@@ -13,24 +29,18 @@ function Footer() {
                 </div>
 
                 <div className="font-semibold text-base text-[#fff] tracking-wide flex flex-col gap-y-2">
-                    <p>
-                        Figma:{' '}
-                        <a href="#" className="italic text-[#4743E0]">
-                            acesse aqui
-                        </a>
-                    </p>
-                    <p>
-                        GitHub:{' '}
-                        <a href="#" className="italic text-[#4743E0]">
-                            acesse aqui
-                        </a>
-                    </p>
-                    <p>
-                        Portfolio:{' '}
-                        <a href="#" className="italic text-[#4743E0]">
-                            acesse aqui
-                        </a>
-                    </p>
+                    {links.map(({ label, link }) => (
+                        <p key={label}>
+                            {`${label}: `}
+                            <a
+                                href={link}
+                                className="italic text-[#4743E0]"
+                                target="_blank"
+                            >
+                                acesse aqui
+                            </a>
+                        </p>
+                    ))}
                 </div>
 
                 <div className="flex flex-col items-center gap-y-2">

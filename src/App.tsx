@@ -8,6 +8,7 @@ import MovieDetails from './pages/MovieDetails/MovieDatails';
 import './App.css';
 import NotFound from './components/NotFound/NotFound';
 import Favorites from './pages/Favorites/Favorites';
+import SeriesTV from './pages/SeriesTV/SeriesTV';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/:type/:id" element={<MovieDetails />} />
                     <Route path="/favoritos" element={<Favorites />} />
+                    <Route path="/tv" element={<SeriesTV />} />
                     <Route path="*" element={<NotFound code={404} />} />
                 </Routes>
                 <Footer />

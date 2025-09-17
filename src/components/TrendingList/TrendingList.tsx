@@ -17,9 +17,10 @@ const apiKey = import.meta.env.VITE_API_TMDB_KEY;
 type TrendingListProps = {
     type?: 'movie' | 'tv';
     titleSection: string;
+    category: string;
 };
 
-function TrendingList({ type, titleSection }: TrendingListProps) {
+function TrendingList({ type, titleSection, category }: TrendingListProps) {
     const [listTrending, setListTrending] = useState<Movie[]>([]);
     const swiperRef = useRef<any>(null);
     const [activeIndex, setActiveIndex] = useState(0);
@@ -30,7 +31,7 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
     useEffect(() => {
         const loadMovies = async () => {
             try {
-                const response = await api_tmdb.get(`trending/${type}/day`, {
+                const response = await api_tmdb.get(`${type}/${category}`, {
                     params: { api_key: apiKey, language: 'pt-BR', page: 1 },
                 });
                 let results: Movie[] = Array.from(response.data.results).map(
@@ -117,9 +118,8 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
                 <SectionLoader />
             ) : (
                 <section className="my-10 px-3 712:px-10 lg:px-20 xl:px-50 2xl:px-70 1920:px-100">
-                    <p className="text-[#4743E0] text-xl font-bold tracking-widest 712:text-2xl">
+                    <p className="text-[#fff] text-xl font-bold tracking-widest 712:text-2xl">
                         {titleSection}{' '}
-                        <span className="text-[#fff]">em alta</span>
                     </p>
 
                     <Swiper
@@ -151,7 +151,7 @@ function TrendingList({ type, titleSection }: TrendingListProps) {
                                 </div>
 
                                 <Link to={`/${type}/${item.id}`}>
-                                    <div className="absolute inset-0  bg-[#171A21]/70 z-[200] 375:rounded-2xl opacity-0 transition-all duration-200 ease-in group-hover:opacity-100">
+                                    <div className="absolute inset-0 bg-[#171A21]/70 z-[200] 375:rounded-2xl opacity-0 transition-all duration-200 ease-in group-hover:opacity-100">
                                         <Icon
                                             icon="gravity-ui:play-fill"
                                             className="w-10 h-10 absolute left-[50%] top-[50%] -translate-[50%] z-[200] text-[#fff]"

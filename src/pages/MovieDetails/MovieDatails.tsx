@@ -61,11 +61,17 @@ function MovieDetails() {
                         <MovieDetailsInfo movie={movie} />
                     </div>
 
-                    {type === 'movie' ? (
-                        <TrendingList type={type} titleSection="Filmes" />
-                    ) : (
-                        <TrendingList type={type} titleSection="Séries" />
-                    )}
+                    <TrendingList
+                        category="popular"
+                        type={'movie'}
+                        titleSection="Filmes em alta"
+                    />
+
+                    <TrendingList
+                        category="popular"
+                        type={'tv'}
+                        titleSection="Séries em alta"
+                    />
                 </section>
             ) : (
                 ''

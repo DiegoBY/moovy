@@ -4,9 +4,23 @@ import TrendingList from '@/components/TrendingList/TrendingList';
 export function Home() {
     return (
         <>
-            <Banner />
-            <TrendingList type="movie" titleSection="Filmes" />
-            <TrendingList type="tv" titleSection="Séries" />
+            <Banner type="movie" category="popular" />
+            <TrendingList
+                category="popular"
+                type="movie"
+                titleSection="Filmes em alta"
+            />
+            <TrendingList
+                category="upcoming"
+                type="movie"
+                titleSection="Filmes Chegando"
+            />
+
+            <TrendingList
+                category="now_playing"
+                type="movie"
+                titleSection="Filmes em Cartaz"
+            />
         </>
     );
 }
