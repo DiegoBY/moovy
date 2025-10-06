@@ -18,4 +18,5 @@ export const genreMap: Record<number, string> = {
     53: 'Suspense',
     10752: 'Guerra',
     37: 'Faroeste',
+    10765: 'Fantasia',
 };

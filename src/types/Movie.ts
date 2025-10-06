@@ -15,4 +15,6 @@ export type Movie = {
     genre_ids?: number[];
     genres?: Genre[];
     type?: string;
+    seasons: number[];
+    runtime: number;
 };
