@@ -12,7 +12,7 @@ O projeto consome uma API pública para exibir filmes e séries de forma dinâmi
 
 ## Visualização
 
-![Moovy Screenshot](https://imgur.com/a/0Y0LXdB)
+![Moovy Screenshot](https://i.imgur.com/bMC2uyW.png)
 
 🔗 Acesse o projeto online: [Moovy](https://moovy-app.vercel.app/)
 
