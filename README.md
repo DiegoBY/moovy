@@ -1,42 +1,85 @@
-# 🛫 Moovy – Voo de Aceitação em Andamento
+# Moovy 🎬
 
-O **Moovy** é um projeto web que já decolou! Ele utiliza a [API da TMDB](https://www.themoviedb.org/) para exibir os filmes mais recentes, trailers, gêneros, datas de lançamento e outras informações cinematográficas de forma dinâmica e intuitiva.
+![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?logo=tailwind-css&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green)
 
----
-
-## 🎬 Funcionalidades Atuais
-
-✅ Banner rotativo com os 5 filmes em cartaz (atualiza a cada 5 segundos)  
-✅ Seção de filmes recomendados (21 filmes exibidos com capas)  
-✅ Página individual de cada filme, com:
-
--   Banner principal clicável para exibir o trailer
--   Informações detalhadas: título, descrição, gêneros e data de lançamento
+**Moovy** é um catálogo de filmes e séries moderno, construído com **React**, **TypeScript** e **TailwindCSS**.  
+O projeto consome uma API pública para exibir filmes e séries de forma dinâmica, com busca, detalhes e interface responsiva.
 
 ---
 
-## ⚠️ Ajustes em Curso no Hangar
+## Visualização
 
-🚧 Links de navegação: `Filmes`, `Séries`, `Favoritos` ainda inativos  
-🚧 Botão de busca sem funcionalidade no momento  
-🚧 Falta de tratamento de erro para IDs de filmes inexistentes
+![Moovy Screenshot](https://imgur.com/a/0Y0LXdB)
 
----
-
-## 🛠️ Plano de Voo em Andamento
-
--   [ ] Implementar seção de séries logo abaixo dos filmes recomendados
--   [ ] Adicionar sistema de loading durante chamadas à API
--   [ ] Melhorar experiência de navegação e tratamento de erros
--   [ ] Refatorar o código para deixá-lo mais limpo, modular e escalável
+🔗 Acesse o projeto online: [Moovy](https://moovy-app.vercel.app/)
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+## Funcionalidades
+
+-   Listagem de filmes e séries.
+-   Busca por títulos.
+-   Página de detalhes com informações completas.
+-   Interface responsiva para mobile e desktop.
+-   Animações e carregamento dinâmico de dados.
+
+---
+
+## Tecnologias utilizadas
 
 -   **React**
 -   **TypeScript**
 -   **TailwindCSS**
--   **TMDB API**
+-   **Axios** (para requisições HTTP)
+-   **API pública de filmes** (TMDb ou equivalente)
 
-Feito com 💜 e paixão por aviação e código por Diego Santos 🛫
+---
+
+## Como rodar o projeto
+
+### Pré-requisitos
+
+-   Node.js (v18 ou superior)
+-   npm ou yarn
+
+### Passo a passo
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/DiegoBY/moovy.git
+```
+
+2. Entre na pasta do projeto:
+
+```bash
+cd moovy
+```
+
+3. Instale as dependências:
+
+```bash
+npm install
+# ou
+yarn install
+```
+
+4. Configure suas variáveis de ambiente (ex: chave da API):
+
+```bash
+cp .env.example .env
+# edite o arquivo .env com sua chave da API
+```
+
+5. Inicie o servidor de desenvolvimento:
+
+```bash
+npm start
+# ou
+yarn start
+```
+
+7. Abra http://localhost:3000 no seu navegador.
