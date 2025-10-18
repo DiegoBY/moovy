@@ -15,8 +15,6 @@ function Banner({ type, category }: BannerProps) {
     const [listMovies, setListMovies] = useState<Movie[]>([]);
     const [loading, setLoading] = useState(true);
 
-    console.log(type);
-
     useEffect(() => {
         const loadMovies = async () => {
             try {
@@ -38,12 +36,15 @@ function Banner({ type, category }: BannerProps) {
                         poster_path: item.poster_path,
                         genre_ids: item.genre_ids,
                         release_date: item.release_date,
+                        runtime: item.runtime,
                     }));
 
                 setListMovies(results);
             } catch (error) {
             } finally {
-                setLoading(false);
+                setTimeout(() => {
+                    setLoading(false);
+                }, 2200);
             }
         };
 

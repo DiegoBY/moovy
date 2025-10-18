@@ -12,6 +12,8 @@ import type { Movie } from '@/types/Movie';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
+import { toast } from 'react-toastify';
+
 const apiKey = import.meta.env.VITE_API_TMDB_KEY;
 
 type TrendingListProps = {
@@ -43,6 +45,7 @@ function TrendingList({ type, titleSection, category }: TrendingListProps) {
                         poster_path: item.poster_path,
                         genre_ids: item.genre_ids,
                         release_date: item.release_date,
+                        runtime: item.runtime,
                     })
                 );
 
@@ -52,6 +55,7 @@ function TrendingList({ type, titleSection, category }: TrendingListProps) {
                 setLoading(false);
             }
         };
+
         loadMovies();
     }, [type]);
 
@@ -101,7 +105,9 @@ function TrendingList({ type, titleSection, category }: TrendingListProps) {
         );
 
         if (hasMovieOrTv) {
-            alert('JA TEM ESSE FILME');
+            toast.error('Heey! Esse você já tem!', {
+                position: 'top-right',
+            });
             return;
         }
 
@@ -109,7 +115,10 @@ function TrendingList({ type, titleSection, category }: TrendingListProps) {
 
         savedMoviesOrTv.push({ ...item, type });
         localStorage.setItem('@moovy', JSON.stringify(savedMoviesOrTv));
-        alert('FILME SALVO');
+
+        toast.success('Salvo aos favoritos!', {
+            position: 'top-right',
+        });
     };
 
     return (

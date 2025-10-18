@@ -25,8 +25,6 @@ interface BannerImageProps {
 function BannerImage({ listMovie, type }: BannerImageProps) {
     const [activeIndex, setActiveIndex] = useState(0);
 
-    console.log('TIPO: ', type);
-
     return (
         <>
             <Swiper

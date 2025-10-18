@@ -9,19 +9,16 @@ interface MovieDetailsInfoProps {
 function MovieDetailsInfo({ movie }: MovieDetailsInfoProps) {
     const location = useLocation();
 
-    console.log(movie);
-
     const title = movie.title || movie.name;
     const year =
         movie.release_date?.slice(0, 4) ||
         movie.first_air_date?.slice(0, 4) ||
         '—';
     const seasons = movie.seasons;
+    const runtime = movie?.runtime;
 
-    const getHours = Math.floor(movie.runtime / 60);
-    const getMinutes = movie.runtime % 60;
-
-    // console.log(seasons.length);
+    const getHours = Math.floor(runtime / 60);
+    const getMinutes = runtime % 60;
 
     return (
         <>
@@ -53,7 +50,7 @@ function MovieDetailsInfo({ movie }: MovieDetailsInfoProps) {
                     <span className="text-[#4743E0] font-bold"> - </span>
                     <span className="font-semibold">
                         {location.pathname.toLowerCase().includes('tv')
-                            ? `${seasons.length} Temporadas`
+                            ? `${seasons?.length} Temporadas`
                             : `${getHours} h ${getMinutes} min`}
                     </span>
                 </div>

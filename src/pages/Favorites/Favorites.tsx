@@ -8,6 +8,8 @@ import { Icon } from '@iconify/react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
+import { toast } from 'react-toastify';
+
 function Favorites() {
     const [moviesTv, setMoviesTv] = useState<Movie[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -38,10 +40,12 @@ function Favorites() {
 
         setMoviesTv(filterMovieTv);
         localStorage.setItem('@moovy', JSON.stringify(filterMovieTv));
+        toast.success('Excluido com sucesso!', {
+            position: 'top-right',
+        });
     };
 
     const goToPage = (numeroDaPagina: number) => {
-        console.log('ENTERI');
         setCurrentPage(numeroDaPagina);
     };
 

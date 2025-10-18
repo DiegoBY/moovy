@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Home } from './pages/Home/Home';
+import { ToastContainer } from 'react-toastify';
 
+import { Home } from './pages/Home/Home';
 import Header from '../src/components/Header/Header';
 import Footer from './components/Footer/Footer';
 import MovieDetails from './pages/MovieDetails/MovieDatails';
@@ -14,6 +15,7 @@ function App() {
     return (
         <>
             <Router>
+                <ToastContainer autoClose={3000} />
                 <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
